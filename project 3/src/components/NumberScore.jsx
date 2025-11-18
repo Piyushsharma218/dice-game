@@ -5,15 +5,21 @@ import { useState } from 'react'
 
 
 
-const NumberScore = () => {
-const[selectedNumber,setselectedNumber]=useState();
+const NumberScore = ({seterror,error,setselectedNumber,selectedNumber}) => {
+
 const arr=[1,2,3,4,5,6]
+
+const handleselectorerror=(num)=>{
+    setselectedNumber(num)
+    seterror("")
+}
 
   return (
     <Container>
+        <p className='error'>{error}</p>
         <div className='flex'>
         {arr.map((num,i)=>(
-            <Box key={i} onClick={()=> setselectedNumber(num)} isselected={num===selectedNumber}>
+            <Box key={i} onClick={()=> handleselectorerror(num)} isselected={num===selectedNumber}>
                 {num}
             </Box>
         ))}
@@ -39,6 +45,9 @@ const Container = styled.div`
     p{
         font-size: 24px;
         font-weight: 700;
+    }
+    .error{
+        color: red;
     }
 `
 
