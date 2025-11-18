@@ -4,6 +4,7 @@ import NumberScore from "./NumberScore"
 import { useState } from "react"
 import RollDice from "./RollDice";
 import { Button, Outlinebtn } from "../button/btn";
+import Rules from "./Rules";
 
 
 function Gameplay() {
@@ -12,6 +13,7 @@ function Gameplay() {
   const[selectedNumber,setselectedNumber]=useState();
   const [currentdice,setcurrentdice]=useState(1);
   const[error,seterror]=useState();
+  const[shworules,setshworules]=useState(false);
 
 
   
@@ -51,8 +53,12 @@ function Gameplay() {
 
         <div className="btns">
           <Outlinebtn onClick={()=>setscore(0)}>Reset Score</Outlinebtn>
-          <Button>Show Rules</Button>
+          <Button onClick={(prev)=>setshworules((prev)=>!prev)}>
+            {shworules ? "hide":"show"}
+             Rules</Button>
         </div>
+        
+        {shworules && <Rules/>}
 
     </Main>
   )
